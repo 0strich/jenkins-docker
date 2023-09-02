@@ -2,7 +2,6 @@ version: "3"
 
 services:
   jenkins:
-    image: jenkins
     container_name: jenkins
     build:
       context: .
