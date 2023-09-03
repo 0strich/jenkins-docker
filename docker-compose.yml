@@ -2,16 +2,19 @@ version: "3"
 
 services:
   jenkins:
+    image: jenkins
     container_name: jenkins
     build:
       context: .
       dockerfile: Dockerfile
+    ports:
+      - 8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /jenkins:/var/jenkins_home
-    environment:
-      - VIRTUAL_HOST=jenkins.saltmine.io
-      - LETSENCRYPT_HOST=jenkins.saltmine.io
-      - LETSENCRYPT_EMAIL=gee8196@gmail.com
-    network_mode: "webproxy"
-    restart: always
+    # environment:
+    #   - VIRTUAL_HOST=${HOST_NAME}
+    #   - LETSENCRYPT_HOST=${HOST_NAME}
+    #   - LETSENCRYPT_EMAIL=gee8196@gmail.com
+    # network_mode: "webproxy"
+    # restart: always
