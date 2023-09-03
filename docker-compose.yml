@@ -2,19 +2,30 @@ version: "3"
 
 services:
   jenkins:
-    image: jenkins
-    container_name: jenkins
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - 8080:8080
+    image: jenkins/jenkins:lts
+    container_name: jenkins_cicd
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /jenkins:/var/jenkins_home
-    # environment:
-    #   - VIRTUAL_HOST=${HOST_NAME}
-    #   - LETSENCRYPT_HOST=${HOST_NAME}
-    #   - LETSENCRYPT_EMAIL=gee8196@gmail.com
-    # network_mode: "webproxy"
-    # restart: always
+    ports:
+      - "8080:8080"
+    privileged: true
+    user: root
+# version: "3"
+
+# services:
+#   jenkins:
+#     image: jenkins
+#     container_name: jenkins
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     volumes:
+#       - /var/run/docker.sock:/var/run/docker.sock
+#       - /jenkins:/var/jenkins_home
+#     environment:
+#       - VIRTUAL_HOST=${HOST_NAME}
+#       - LETSENCRYPT_HOST=${HOST_NAME}
+#       - LETSENCRYPT_EMAIL=gee8196@gmail.com
+#     network_mode: "webproxy"
+#     restart: always
